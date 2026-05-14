@@ -1,0 +1,498 @@
+@media (max-width: 720px), (max-height: 720px) and (max-width: 980px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100%;
+  }
+
+  body:has(.game-screen) {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body:has(.game-screen) .app-shell {
+    width: 100vw;
+    height: 100svh;
+    min-height: 100svh;
+    padding: max(4px, env(safe-area-inset-top)) 5px max(4px, env(safe-area-inset-bottom));
+    overflow: hidden;
+    align-items: stretch;
+  }
+
+  body:has(.game-screen) .app-scale {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    transform: none;
+  }
+
+  .game-screen {
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 68px minmax(0, 1fr) 78px;
+    gap: 4px;
+    overflow: hidden;
+    align-items: stretch;
+  }
+
+  .hud-column,
+  .board-column,
+  .players-column {
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .hud-column {
+    order: 1;
+    height: 68px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  .board-column {
+    order: 2;
+    display: grid;
+    overflow: hidden;
+  }
+
+  .players-column {
+    order: 3;
+    height: 78px;
+    display: block;
+    overflow: hidden;
+  }
+
+  .panel,
+  .active-panel,
+  .control-panel,
+  .players-column > .panel {
+    min-height: 0;
+    border-radius: 12px;
+    box-shadow: inset 0 1px #fff2c914;
+  }
+
+  .active-panel,
+  .control-panel {
+    height: 68px;
+    padding: 5px 6px;
+    overflow: hidden;
+  }
+
+  .active-panel {
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+  }
+
+  .active-panel > .eyebrow,
+  .active-panel h2,
+  .active-panel .pawn-badge,
+  .active-panel .treasure-card,
+  .active-panel .treasure-focus > .eyebrow,
+  .active-panel .treasure-focus h3,
+  .active-panel .treasure-focus p,
+  .active-panel .treasure-focus strong,
+  .active-panel .treasure-focus figcaption,
+  .active-panel .phase-indicator {
+    display: none !important;
+  }
+
+  .active-panel .treasure-focus {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .active-panel .secret-target {
+    width: 100%;
+    display: block;
+  }
+
+  .active-panel .treasure-focus button {
+    width: 100%;
+    min-height: 48px;
+    padding: 5px 8px;
+    border-radius: 12px;
+    font-size: .68rem;
+    line-height: 1.05;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .control-panel {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) 20px;
+    gap: 3px;
+    align-items: stretch;
+  }
+
+  .control-panel > .eyebrow {
+    display: none !important;
+  }
+
+  .control-panel .game-actions {
+    display: grid !important;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .control-panel .game-actions > * {
+    display: none !important;
+  }
+
+  .control-panel .game-actions > :first-child {
+    display: block !important;
+    min-width: 0;
+    min-height: 20px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: .58rem;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .rotation-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .rotation-controls .ghost-button,
+  .rotation-controls .primary-button {
+    min-width: 0;
+    min-height: 34px;
+    padding: 4px;
+    border-radius: 10px;
+    font-size: .62rem;
+    line-height: 1.05;
+    white-space: normal;
+  }
+
+  .hud-column .scoreboard-card,
+  .hud-column .treasure-event-card,
+  .hud-column .save-manager,
+  .hud-column .secret-summary,
+  .computer-move-summary,
+  .final-board-banner {
+    display: none !important;
+  }
+
+  .board-stage {
+    min-height: 0;
+    height: 100%;
+    padding: 0;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .board-stage--dom {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: clamp(38px, 10vw, 48px) minmax(0, 1fr);
+    gap: 4px;
+    align-items: center;
+  }
+
+  .spare-tile-panel {
+    gap: 4px;
+    align-self: center;
+    justify-items: center;
+    min-width: 0;
+  }
+
+  .spare-tile-panel .treasure-card,
+  .spare-tile-panel .secret-target,
+  .spare-tile-panel .empty-state {
+    display: none;
+  }
+
+  .spare-tile-panel .maze-tile {
+    width: clamp(36px, 9vw, 46px);
+    min-height: 0;
+  }
+
+  .maze-board-shell {
+    width: min(100%, calc(100svh - 158px), calc(100vw - 58px));
+    max-width: 100%;
+    aspect-ratio: 1;
+    align-self: center;
+    justify-self: center;
+    grid-template-columns: clamp(14px, 4.7vw, 20px) repeat(7, minmax(0, 1fr)) clamp(14px, 4.7vw, 20px);
+    grid-template-rows: clamp(14px, 4.7vw, 20px) repeat(7, minmax(0, 1fr)) clamp(14px, 4.7vw, 20px);
+    gap: 2px;
+    padding: 4px;
+    border-radius: 13px;
+    box-shadow: 0 10px 22px #01081257, inset 0 1px #fff2c914;
+  }
+
+  .maze-tile {
+    min-height: 0;
+    border-radius: 8px;
+  }
+
+  .maze-tile__stone {
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 2px #ffe9b738;
+  }
+
+  .maze-tile__center,
+  .maze-tile__path {
+    border-radius: 5px;
+  }
+
+  .maze-tile--highlighted:after,
+  .maze-tile--active-player:before,
+  .maze-tile__computer-path-marker {
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    border-width: 2px;
+    border-radius: 7px;
+  }
+
+  .maze-tile--computer-destination:before {
+    top: -3px;
+    right: -3px;
+    bottom: -3px;
+    left: -3px;
+    border-width: 2px;
+    border-radius: 11px;
+    box-shadow: 0 0 0 3px #ffd65c29, 0 0 14px #ffd65ca6;
+  }
+
+  .maze-tile__treasure {
+    top: 18%;
+    right: 18%;
+    bottom: 18%;
+    left: 18%;
+    box-shadow: 0 0 0 2px #e0bc70e6, 0 0 0 4px #0f213feb;
+  }
+
+  .maze-tile__start {
+    top: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    box-shadow: 0 0 0 2px #ffe6a938;
+  }
+
+  .maze-tile__pawns {
+    right: 3px;
+    bottom: 3px;
+    left: 3px;
+    gap: 2px;
+  }
+
+  .maze-pawn {
+    min-width: 17px;
+    height: 17px;
+    padding-inline: 3px;
+    font-size: .48rem;
+  }
+
+  .entry-arrow {
+    min-width: 0;
+    border-radius: 7px;
+    font-size: .76rem;
+  }
+
+  .entry-arrow__glyph {
+    font-size: .92rem;
+  }
+
+  .entry-arrow__label,
+  .maze-tile__computer-step,
+  .maze-tile__computer-label {
+    display: none;
+  }
+
+  .players-column > .panel {
+    height: 78px;
+    padding: 4px;
+    overflow: hidden;
+  }
+
+  .players-column > .panel > .eyebrow,
+  .players-column .treasure-event-card {
+    display: none !important;
+  }
+
+  .players-column .scoreboard-card {
+    display: grid;
+    height: 70px;
+    gap: 4px;
+    margin: 0;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+
+  .players-column .scoreboard-card__header {
+    display: none;
+  }
+
+  .players-column .scoreboard-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .players-column .scoreboard-row {
+    min-width: 0;
+    gap: 3px;
+    padding: 4px 5px;
+    border-radius: 9px;
+  }
+
+  .players-column .scoreboard-row__top {
+    gap: 4px;
+  }
+
+  .players-column .scoreboard-player-title {
+    min-width: 0;
+    gap: 4px;
+  }
+
+  .players-column .scoreboard-player-title span:last-child,
+  .players-column .scoreboard-row small {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .players-column .scoreboard-player-color {
+    width: 10px;
+    height: 10px;
+  }
+
+  .players-column .scoreboard-row__top span,
+  .players-column .scoreboard-row__top strong {
+    font-size: .68rem;
+    line-height: 1;
+  }
+
+  .players-column .scoreboard-row small {
+    font-size: .6rem;
+    line-height: 1;
+  }
+
+  .players-column .scoreboard-meter {
+    height: 5px;
+  }
+
+  .turn-overlay,
+  .victory-overlay,
+  .modal-backdrop {
+    padding: 10px;
+  }
+
+  .turn-overlay__card,
+  .victory-overlay__card,
+  .modal-shell {
+    width: min(94vw, 360px);
+    max-height: calc(100svh - 20px);
+    overflow: auto;
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .turn-overlay__card h2,
+  .victory-overlay__card h2,
+  .modal-shell h2 {
+    margin-block: 0 8px;
+    font-size: 1.15rem;
+    line-height: 1.15;
+  }
+
+  .turn-overlay__card .treasure-card,
+  .modal-shell .treasure-card {
+    width: 94px;
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .turn-overlay__card .treasure-card__image,
+  .modal-shell .treasure-card__image,
+  .turn-overlay__card .treasure-card__back,
+  .modal-shell .treasure-card__back {
+    border-radius: 12px;
+  }
+
+  .modal-actions,
+  .setup-actions {
+    gap: 6px;
+  }
+
+  .modal-actions .primary-button,
+  .modal-actions .ghost-button {
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: .82rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .game-screen {
+    grid-template-rows: 62px minmax(0, 1fr) 72px;
+  }
+
+  .hud-column,
+  .active-panel,
+  .control-panel {
+    height: 62px;
+  }
+
+  .players-column,
+  .players-column > .panel {
+    height: 72px;
+  }
+
+  .players-column .scoreboard-card {
+    height: 64px;
+  }
+
+  .maze-board-shell {
+    width: min(100%, calc(100svh - 142px), calc(100vw - 54px));
+    grid-template-columns: 13px repeat(7, minmax(0, 1fr)) 13px;
+    grid-template-rows: 13px repeat(7, minmax(0, 1fr)) 13px;
+    gap: 1px;
+    padding: 3px;
+  }
+
+  .rotation-controls .ghost-button,
+  .rotation-controls .primary-button,
+  .active-panel .treasure-focus button {
+    padding: 4px 5px;
+    font-size: .61rem;
+  }
+
+  .control-panel {
+    grid-template-rows: minmax(0, 1fr) 18px;
+    gap: 2px;
+  }
+
+  .rotation-controls .ghost-button,
+  .rotation-controls .primary-button {
+    min-height: 30px;
+    padding: 3px 4px;
+    font-size: .57rem;
+  }
+
+  .control-panel .game-actions > :first-child {
+    min-height: 18px;
+    padding: 2px 5px;
+    font-size: .52rem;
+  }
+}
