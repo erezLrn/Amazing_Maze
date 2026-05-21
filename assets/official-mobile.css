@@ -56,6 +56,7 @@
 
   .board-column {
     order: 2;
+    position: relative;
     display: grid;
     overflow: hidden;
   }
@@ -138,15 +139,19 @@
 
   .control-panel .game-actions {
     display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     min-width: 0;
     min-height: 0;
+    gap: 3px;
   }
 
   .control-panel .game-actions > * {
     display: none !important;
   }
 
-  .control-panel .game-actions > :first-child {
+  .control-panel .game-actions > .game-action-undo,
+  .control-panel .game-actions > .game-action-stay,
+  .control-panel .game-actions > .game-action-exit {
     display: block !important;
     min-width: 0;
     min-height: 20px;
@@ -177,12 +182,43 @@
   }
 
   .hud-column .scoreboard-card,
-  .hud-column .treasure-event-card,
   .hud-column .save-manager,
   .hud-column .secret-summary,
-  .computer-move-summary,
-  .final-board-banner {
+  .computer-move-summary {
     display: none !important;
+  }
+
+  .final-board-banner {
+    position: absolute;
+    z-index: 20;
+    top: 4px;
+    right: 4px;
+    left: 4px;
+    width: auto;
+    margin: 0;
+    padding: 6px;
+    border-radius: 10px;
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .final-board-banner > div {
+    display: none !important;
+  }
+
+  .final-board-banner .ghost-button,
+  .final-board-banner .primary-button {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 24px;
+    padding: 4px 6px;
+    border-radius: 8px;
+    font-size: .58rem;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .board-stage {
@@ -327,6 +363,54 @@
   .players-column > .panel > .eyebrow,
   .players-column .treasure-event-card {
     display: none !important;
+  }
+
+  .players-column > .panel:has(.treasure-event-card:not(.treasure-event-card--empty)) .scoreboard-card {
+    display: none !important;
+  }
+
+  .players-column .treasure-event-card:not(.treasure-event-card--empty) {
+    display: grid !important;
+    grid-template-columns: 34px minmax(0, 1fr);
+    min-height: 70px;
+    height: 70px;
+    margin: 0;
+    padding: 5px 6px;
+    gap: 7px;
+    border-radius: 10px;
+  }
+
+  .players-column .treasure-event-card__image {
+    width: 34px;
+    border-radius: 9px;
+  }
+
+  .players-column .treasure-event-card__body {
+    min-width: 0;
+    gap: 2px;
+  }
+
+  .players-column .treasure-event-card__body .eyebrow {
+    display: none;
+  }
+
+  .players-column .treasure-event-card__body strong,
+  .players-column .treasure-event-card__body span {
+    display: block;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .players-column .treasure-event-card__body strong {
+    font-size: .72rem;
+    line-height: 1.05;
+  }
+
+  .players-column .treasure-event-card__body span {
+    font-size: .6rem;
+    line-height: 1.1;
   }
 
   .players-column .scoreboard-card {
@@ -490,7 +574,9 @@
     font-size: .57rem;
   }
 
-  .control-panel .game-actions > :first-child {
+  .control-panel .game-actions > .game-action-undo,
+  .control-panel .game-actions > .game-action-stay,
+  .control-panel .game-actions > .game-action-exit {
     min-height: 18px;
     padding: 2px 5px;
     font-size: .52rem;
